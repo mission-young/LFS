@@ -6,7 +6,7 @@ In this chapter, we will perform a few additional tasks to prepare for building 
 
 ## 4.2. Creating the $LFS/tools Directory
 
-All programs compiled in [Chapter 5](Linux%20From%20Scratch.html#chapter-temporary-tools) will be installed under `$LFS/tools` to keep them separate from the programs compiled in [Chapter 6](Linux%20From%20Scratch.html#chapter-building-system). The programs compiled here are temporary tools and will not be a part of the final LFS system. By keeping these programs in a separate directory, they can easily be discarded later after their use. This also prevents these programs from ending up in the host production directories (easy to do by accident in [Chapter 5](Linux%20From%20Scratch.html#chapter-temporary-tools)).
+All programs compiled in [Constructing a Temporary System](chapter5.md) will be installed under `$LFS/tools` to keep them separate from the programs compiled in [Building the LFS System](chapter6.md). The programs compiled here are temporary tools and will not be a part of the final LFS system. By keeping these programs in a separate directory, they can easily be discarded later after their use. This also prevents these programs from ending up in the host production directories (easy to do by accident in [Constructing a Temporary System](chapter5.md)).
 
 Create the required directory by running the following as `root`:
 
@@ -89,9 +89,9 @@ The `LFS` variable should be set to the chosen mount point.
 
 The `LC_ALL` variable controls the localization of certain programs, making their messages follow the conventions of a specified country. Setting `LC_ALL` to “POSIX” or “C” (the two are equivalent) ensures that everything will work as expected in the chroot environment.
 
-The `LFS_TGT` variable sets a non-default, but compatible machine description for use when building our cross compiler and linker and when cross compiling our temporary toolchain. More information is contained in [Section 5.2, “Toolchain Technical Notes”](Linux%20From%20Scratch.html#ch-tools-toolchaintechnotes).
+The `LFS_TGT` variable sets a non-default, but compatible machine description for use when building our cross compiler and linker and when cross compiling our temporary toolchain. More information is contained in [Section “Toolchain Technical Notes”](chapter5.md#2).
 
-By putting `/tools/bin` ahead of the standard `PATH`, all the programs installed in [Chapter 5](Linux%20From%20Scratch.html#chapter-temporary-tools) are picked up by the shell immediately after their installation. This, combined with turning off hashing, limits the risk that old programs are used from the host when the same programs are available in the chapter 5 environment.
+By putting `/tools/bin` ahead of the standard `PATH`, all the programs installed in [Constructing a Temporary System](chapter5.md) are picked up by the shell immediately after their installation. This, combined with turning off hashing, limits the risk that old programs are used from the host when the same programs are available in the chapter 5 environment.
 
 Finally, to have the environment fully prepared for building the temporary tools, source the just-created user profile:
 
@@ -101,7 +101,7 @@ Finally, to have the environment fully prepared for building the temporary tools
 
 Many people would like to know beforehand approximately how long it takes to compile and install each package. Because Linux From Scratch can be built on many different systems, it is impossible to provide accurate time estimates. The biggest package (Glibc) will take approximately 20 minutes on the fastest systems, but could take up to three days on slower systems! Instead of providing actual times, the Standard Build Unit (SBU) measure will be used instead.
 
-The SBU measure works as follows. The first package to be compiled from this book is Binutils in [Chapter 5](Linux%20From%20Scratch.html#chapter-temporary-tools). The time it takes to compile this package is what will be referred to as the Standard Build Unit or SBU. All other compile times will be expressed relative to this time.
+The SBU measure works as follows. The first package to be compiled from this book is Binutils in [Constructing a Temporary System](chapter5.md). The time it takes to compile this package is what will be referred to as the Standard Build Unit or SBU. All other compile times will be expressed relative to this time.
 
 For example, consider a package whose compilation time is 4.5 SBUs. This means that if a system took 10 minutes to compile and install the first pass of Binutils, it will take *approximately* 45 minutes to build this example package. Fortunately, most build times are shorter than the one for Binutils.
 
@@ -127,7 +127,7 @@ Some test suites are more important than others. For example, the test suites fo
 
 ### Note
 
-Experience has shown that there is little to be gained from running the test suites in [Chapter 5](Linux%20From%20Scratch.html#chapter-temporary-tools). There can be no escaping the fact that the host system always exerts some influence on the tests in that chapter, often causing inexplicable failures. Because the tools built in [Chapter 5](Linux%20From%20Scratch.html#chapter-temporary-tools) are temporary and eventually discarded, we do not recommend running the test suites in [Chapter 5](Linux%20From%20Scratch.html#chapter-temporary-tools) for the average reader. The instructions for running those test suites are provided for the benefit of testers and developers, but they are strictly optional.
+Experience has shown that there is little to be gained from running the test suites in [Constructing a Temporary System](chapter5.md). There can be no escaping the fact that the host system always exerts some influence on the tests in that chapter, often causing inexplicable failures. Because the tools built in [Constructing a Temporary System](chapter5.md) are temporary and eventually discarded, we do not recommend running the test suites in [Constructing a Temporary System](chapter5.md) for the average reader. The instructions for running those test suites are provided for the benefit of testers and developers, but they are strictly optional.
 
 A common issue with running the test suites for Binutils and GCC is running out of pseudo terminals (PTYs). This can result in a high number of failing tests. This may happen for several reasons, but the most likely cause is that the host system does not have the `devpts` file system set up correctly. This issue is discussed in greater detail at [http://www.linuxfromscratch.org/lfs/faq.html#no-ptys](http://www.linuxfromscratch.org/lfs/faq.html#no-ptys).
 
